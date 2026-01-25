@@ -14,7 +14,7 @@ services:
       - traefik.enable=true
 
       # Router (subdomain)
-      - traefik.http.routers.ntfy.rule="Host(`ntfy.${DOMAIN}`)"
+      - traefik.http.routers.ntfy.rule=Host(`ntfy.${DOMAIN}`)
       - traefik.http.routers.ntfy.entrypoints=websecure
       - traefik.http.routers.ntfy.tls=true
 
