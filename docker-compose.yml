@@ -6,8 +6,8 @@ services:
     volumes:
       - ./cache:/var/cache/ntfy
       - ./config:/etc/ntfy
-    environment:
-      - TZ=Europe/Berlin
+    env_file:
+      - .env
     networks:
       - proxy
     labels:

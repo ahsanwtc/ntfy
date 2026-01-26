@@ -1,0 +1,30 @@
+# config/server.yml
+
+# Base URL shown in links + used by clients
+base-url: "${NTFY_BASE_URL}"
+
+# Listen inside container
+listen-http: ":80"
+
+# Persist DB/cache/attachments
+cache-file: "/var/cache/ntfy/cache.db"
+attachment-cache-dir: "/var/cache/ntfy/attachments"
+
+# ---- Security defaults ----
+# Enable built-in auth; store auth DB in cache volume
+auth-file: "/var/cache/ntfy/auth.db"
+
+# Deny everything unless explicitly granted
+auth-default-access: "deny-all"
+
+# Optional hardening (recommended)
+behind-proxy: true
+enable-login: true
+
+# Limit abuse
+visitor-request-limit-burst: 60
+visitor-request-limit-replenish: "5s"
+
+# Attachments limits (optional)
+attachment-total-size-limit: "500M"
+attachment-file-size-limit: "15M"
