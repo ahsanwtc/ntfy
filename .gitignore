@@ -1,1 +1,8 @@
 .env
+
+# ntfy runtime data
+cache/
+config/*.db
+
+# just in case
+*.db
