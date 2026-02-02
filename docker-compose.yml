@@ -31,7 +31,6 @@ services:
       - MOLLY_HOST=0.0.0.0
       - MOLLY_PORT=8020
       - MOLLY_DB=/data/ms.db
-      - MOLLY_VAPID_KEY_FILE=
     networks:
       - proxy
       - internal
