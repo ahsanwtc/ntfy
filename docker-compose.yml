@@ -10,21 +10,40 @@ services:
       - .env
     networks:
       - proxy
+      - internal
     labels:
       - traefik.enable=true
-
-      # Router (subdomain)
       - traefik.http.routers.ntfy.rule=Host(`ntfy.${DOMAIN}`)
       - traefik.http.routers.ntfy.entrypoints=websecure
       - traefik.http.routers.ntfy.tls=true
-
-      # If your Traefik uses Let's Encrypt via a certresolver, keep the same name here:
       - traefik.http.routers.ntfy.tls.certresolver=letsencrypt
-
-      # Tell Traefik what port ntfy listens on INSIDE the container
       - traefik.http.services.ntfy.loadbalancer.server.port=80
+
+  mollysocket:
+    image: ghcr.io/mollyim/mollysocket:latest
+    restart: unless-stopped
+    volumes:
+      - ./mollysocket:/data
+    env_file:
+      - .env
+    environment:
+      - MOLLY_HOST=0.0.0.0
+      - MOLLY_PORT=8020
+      - MOLLY_DB=/data/ms.db
+    networks:
+      - proxy
+      - internal
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.mollysocket.rule=Host(`mollysocket.${DOMAIN}`)
+      - traefik.http.routers.mollysocket.entrypoints=websecure
+      - traefik.http.routers.mollysocket.tls=true
+      - traefik.http.routers.mollysocket.tls.certresolver=letsencrypt
+      - traefik.http.services.mollysocket.loadbalancer.server.port=8020
 
 networks:
   proxy:
     external: true
     name: proxy
+  internal:
+    name: ntfy-internal
