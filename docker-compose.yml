@@ -8,6 +8,8 @@ services:
       - ./config:/etc/ntfy
     env_file:
       - .env
+    environment:
+      - MOLLY_VAPID_PRIVKEY=
     networks:
       - proxy
       - internal
