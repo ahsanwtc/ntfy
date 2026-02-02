@@ -21,6 +21,7 @@ services:
 
   mollysocket:
     image: ghcr.io/mollyim/mollysocket:latest
+    command: server
     restart: unless-stopped
     volumes:
       - ./mollysocket:/data
