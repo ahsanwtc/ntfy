@@ -9,7 +9,9 @@ services:
     env_file:
       - .env
     environment:
+      # unsetting molly env due to using single env file, fix it later
       - MOLLY_VAPID_PRIVKEY=
+      - MOLLY_ALLOWED_ENDPOINTS=
     networks:
       - proxy
       - internal
