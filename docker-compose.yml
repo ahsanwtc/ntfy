@@ -22,9 +22,7 @@ services:
       - traefik.http.routers.ntfy.tls=true
       - traefik.http.routers.ntfy.tls.certresolver=letsencrypt
       - traefik.http.services.ntfy.loadbalancer.server.port=80
-      - traefik.http.middlewares.ntfy-headers.headers.customrequestheaders.Upgrade=websocket
-      - traefik.http.middlewares.ntfy-headers.headers.customrequestheaders.Connection=Upgrade
-      - traefik.http.routers.ntfy.middlewares=ntfy-headers
+      - traefik.http.services.ntfy.loadbalancer.passhostheader=true
 
   mollysocket:
     image: ghcr.io/mollyim/mollysocket:latest
