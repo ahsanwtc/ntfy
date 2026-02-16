@@ -14,8 +14,8 @@ attachment-cache-dir: "/var/cache/ntfy/attachments"
 # Enable built-in auth; store auth DB in cache volume
 auth-file: "/var/cache/ntfy/auth.db"
 
-# Deny everything unless explicitly granted
-auth-default-access: "deny-all"
+# Allow anyone to write/push, require auth to read/subscribe
+auth-default-access: "write-only"
 
 # Optional hardening (recommended)
 behind-proxy: true
